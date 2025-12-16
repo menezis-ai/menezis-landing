@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+@theme {
+  --color-background: #050505;
+  --color-foreground: #ededed;
+
+  --color-terminal-green: #00FF41;
+  --color-alert-amber: #FFB000;
+  --color-electric-blue: #007AFF;
+
+  /* DIRECT MAPPING TO NEXT.JS VARIABLES */
+  --font-sans: var(--font-inter), sans-serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+  --font-terminal: var(--font-inconsolata), monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Utilities */
+.glass-panel {
+  background-color: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tech-border {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Force override to ensure specific font usage */
+.font-terminal-custom {
+  font-family: var(--font-jetbrains-mono), 'Fira Code', var(--font-inconsolata), Consolas, 'Courier New', monospace !important;
+}
+
+.tech-text-shadow {
+  text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+}

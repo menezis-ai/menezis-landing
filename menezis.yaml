@@ -1,0 +1,8 @@
+version: "1.0"
+services:
+  web:
+    type: app-nodejs
+    params:
+      build_context: "."
+      port: 3000
+      node_env: "production"

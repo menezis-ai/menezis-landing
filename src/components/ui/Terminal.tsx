@@ -104,7 +104,8 @@ export function Terminal() {
                                 </pre>
 
                                 <div className="text-white/40">═══════════════════════════════════════════════════════════</div>
-                                <div className="text-white/90 py-1">From Vision to Reality. Instantly.</div>
+                                <div className="text-white/90 py-1 font-bold">Infrastructure at the Speed of Thought.</div>
+                                <div className="text-white/50 text-xs py-1">Speak your architecture. We handle the metal, the crypto, and the scale.</div>
                                 <div className="text-white/40">═══════════════════════════════════════════════════════════</div>
                             </div>
 

@@ -40,7 +40,7 @@ export default function Home() {
               Built different. <span className="text-terminal-green">To let you build faster.</span>
             </h2>
             <p className="font-mono text-neutral-400 text-lg">
-              The first infrastructure platform designed by an AI, for the AI era.
+              The first infrastructure platform designed for the AI era.
             </p>
           </div>
         </Container>

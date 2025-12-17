@@ -94,7 +94,7 @@ export function Terminal() {
 
                             {/* ASCII LOGO & HEADER */}
                             <div className="mb-6">
-                                <pre className="text-terminal-green font-bold leading-[1.1] tracking-tighter whitespace-pre overflow-hidden mb-6 select-none">
+                                <pre aria-hidden="true" className="text-terminal-green font-bold leading-[1.1] tracking-tighter whitespace-pre overflow-hidden mb-6 select-none">
                                     {`███╗   ███╗███████╗███╗   ██╗███████╗███████╗██╗███████╗
 ████╗ ████║██╔════╝████╗  ██║██╔════╝╚══███╔╝██║██╔════╝
 ██╔████╔██║█████╗  ██╔██╗ ██║█████╗    ███╔╝ ██║███████╗
@@ -105,7 +105,7 @@ export function Terminal() {
 
                                 <div className="text-white/40">═══════════════════════════════════════════════════════════</div>
                                 <div className="text-white/90 py-1 font-bold">Infrastructure at the Speed of Thought.</div>
-                                <div className="text-white/50 text-xs py-1">Speak your architecture. We handle the metal, the crypto, and the scale.</div>
+                                <div className="text-white/50 text-xs py-1">16 MCP tools for Claude, Cursor, Windsurf, Roo & Antigravity. Post-quantum security.</div>
                                 <div className="text-white/40">═══════════════════════════════════════════════════════════</div>
                             </div>
 

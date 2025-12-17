@@ -8,12 +8,13 @@ import { BentoGrid } from "@/components/ui/BentoGrid";
 import { TechCard } from "@/components/ui/TechCard";
 import { McpToolGrid } from "@/components/ui/McpToolGrid";
 import { PricingTable } from "@/components/ui/PricingTable";
-import { Shield, Coins, Network, GitCommit, ChevronDown, Sparkles, Eye, ArrowRightLeft } from "lucide-react";
+import { FAQ } from "@/components/ui/FAQ";
+import { Shield, Coins, Network, GitCommit, ChevronDown, Sparkles, Eye, ArrowRightLeft, HelpCircle, Github } from "lucide-react";
 
 export default function Home() {
 
   return (
-    <main className="min-h-screen bg-background relative selection:bg-terminal-green/30">
+    <main id="main-content" className="min-h-screen bg-background relative selection:bg-terminal-green/30">
 
       {/* Background Grid Pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
@@ -22,7 +23,10 @@ export default function Home() {
       {/* SECTION A: HERO */}
       <Section className="min-h-screen flex flex-col justify-center pt-16 pb-0 sm:pt-20">
         <Container>
-
+          {/* SEO: Primary H1 - visually hidden but accessible */}
+          <h1 className="sr-only">
+            Menezis - Autonomous Infrastructure Platform with MCP Integration and Post-Quantum Security
+          </h1>
 
           <Terminal />
 
@@ -40,7 +44,8 @@ export default function Home() {
               Built different. <span className="text-terminal-green">To let you build faster.</span>
             </h2>
             <p className="font-mono text-neutral-400 text-lg">
-              The first infrastructure platform designed for the AI era.
+              The first autonomous infrastructure platform designed for the AI era.<br />
+              <span className="text-neutral-500">16 MCP tools. ML-KEM-768 post-quantum security. Self-healing monitoring.</span>
             </p>
           </div>
         </Container>
@@ -60,21 +65,21 @@ export default function Home() {
           <BentoGrid>
             <TechCard
               title="POST-QUANTUM SANCTUARY"
-              description={<>Don't just encrypt. Future-proof. <br />ML-KEM-768 by default. Your data is safe against threats that don't even exist yet.</>}
+              description={<>Four-layer security: mTLS + JWT + ML-KEM-768 + AES-256-GCM.<br />NIST FIPS 203 standardized. Protected against threats that don't exist yet.</>}
               icon={Shield}
               variant="default"
               className="md:col-span-1"
             />
             <TechCard
               title="SOVEREIGN ECONOMICS"
-              description={<>Zero hidden fees. Zero surprise bills. <br />We optimize resource density so you pay for compute, not waste. Total predictability.</>}
+              description={<>Zero hidden fees. Pro-rata billing to the second.<br />Free Nano tier forever. Small at 12.99€/mo. Predictable costs, no surprise bills.</>}
               icon={Coins}
               variant="alert"
               className="md:col-span-1"
             />
             <TechCard
               title="SELF-HEALING MESH"
-              description={<>Distributed consensus via Etcd. <br />Automatic failover in {"<"}10s. <br />Like the mythical Hydra: cut off one head, two more grow back.</>}
+              description={<>Operation Hydra: etcd + HAProxy + automatic failover.<br />Distributed consensus. Cut off one head, two more grow back. {"<"}10s recovery.</>}
               icon={Network}
               variant="info"
               className="md:col-span-1"
@@ -85,21 +90,21 @@ export default function Home() {
           <BentoGrid className="mt-4">
             <TechCard
               title="AI-NATIVE DEPLOYMENT"
-              description={<>Don't write YAML. Describe your stack in plain English. <br />Our Genesis Engine translates intent into rigorous configuration, validated by 7 layers of logic.</>}
+              description={<>16 MCP tools for Claude, Cursor, Windsurf, Roo & Antigravity.<br />describe → validate (7 layers) → judge (5 analyzers) → deploy.<br />Natural language to running infrastructure.</>}
               icon={Sparkles}
               variant="default"
               className="md:col-span-1"
             />
             <TechCard
               title="LIQUID INFRASTRUCTURE"
-              description={<>Your app isn't tied to a server. <br />Live migration moves your workload instantly to optimize costs or scale resources. <br />Zero downtime resizing.</>}
+              description={<>Multi-runtime: Docker, Kubernetes, systemd.<br />Same stackfile, any target. Live migration. Zero downtime scaling.</>}
               icon={ArrowRightLeft}
               variant="alert"
               className="md:col-span-1"
             />
             <TechCard
               title="AUTONOMOUS OVERSIGHT"
-              description={<>Argus doesn't just watch; it acts. <br />Disk full? It cleans. Service crashing? It restarts. <br />You get a report, not a pager alert at 3 AM.</>}
+              description={<>Operation Argus monitors every 15 seconds.<br />CPU high? Auto-scale. Service down? Auto-restart. Disk full? Auto-cleanup.<br />MTTR under 2 minutes. 90%+ auto-resolution.</>}
               icon={Eye}
               variant="info"
               className="md:col-span-1"
@@ -116,7 +121,7 @@ export default function Home() {
               <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2">
                 <GitCommit className="text-electric-blue" /> THE ARSENAL
               </h2>
-              <p className="font-mono text-sm text-neutral-500">16 MCP Tools. Native integration with Claude, Cursor, Windsurf.</p>
+              <p className="font-mono text-sm text-neutral-500">16 MCP Tools. Native integration with Claude, Cursor, Windsurf, Roo, Antigravity.</p>
             </div>
             <div className="font-mono text-xs text-neutral-600 bg-white/5 px-3 py-1 rounded border border-white/5">
               npm install @menezis/sdk
@@ -139,6 +144,21 @@ export default function Home() {
         </Container>
       </Section>
 
+      {/* SECTION F: FAQ */}
+      <Section className="border-t border-white/5">
+        <Container>
+          <div className="mb-12 text-center">
+            <h2 className="text-2xl font-bold text-white mb-2 flex items-center justify-center gap-2">
+              <HelpCircle className="text-terminal-green" /> FREQUENTLY ASKED QUESTIONS
+            </h2>
+            <p className="font-mono text-sm text-neutral-500">
+              Everything you need to know about Menezis
+            </p>
+          </div>
+          <FAQ />
+        </Container>
+      </Section>
+
       {/* FOOTER */}
       <footer className="border-t border-white/10 bg-black/80 py-12">
         <Container>
@@ -151,8 +171,11 @@ export default function Home() {
             </div>
 
             <div className="flex gap-8">
-              <a href="#" className="hover:text-white transition-colors">Documentation</a>
-              <a href="#" className="hover:text-white transition-colors">Status</a>
+              <a href="https://docs.menezis.ai" className="hover:text-white transition-colors">Documentation</a>
+              <a href="https://status.menezis.ai" className="hover:text-white transition-colors">Status</a>
+              <a href="https://github.com/JulienDbrt/sigilum" className="hover:text-white transition-colors flex items-center gap-1">
+                <Github size={12} /> GitHub
+              </a>
             </div>
           </div>
 

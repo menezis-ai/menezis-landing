@@ -3,9 +3,9 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-    Server, Database, Shield, Activity, FileText, Layout,
-    GitBranch, Terminal, Cpu, Lock, Network, Zap,
-    Globe, Save, Command, BarChart, X
+    Search, CheckCircle, Scale, Rocket, Activity, FileText,
+    Trash2, LogIn, CreditCard, Server, Network, XCircle,
+    Receipt, Container, Settings, Shield, X
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -17,23 +17,31 @@ interface Tool {
     description: string;
 }
 
+// Accurate 16 MCP tools from Sigilum codebase
 const TOOLS: Tool[] = [
-    { name: "server_provision", input: "spec", output: "server_id", icon: Server, description: "Provision high-performance bare metal or cloud instances." },
-    { name: "database_create", input: "config", output: "db_endpoint", icon: Database, description: "Deploy managed PostgreSQL, Redis, or ClickHouse clusters." },
-    { name: "firewall_configure", input: "rules", output: "policy_id", icon: Shield, description: "Define and apply network security policies and rules." },
-    { name: "monitor_metrics", input: "resource_id", output: "metrics_stream", icon: Activity, description: "Stream real-time telemetry and resource usage data." },
-    { name: "log_analyze", input: "log_path", output: "insights", icon: FileText, description: "Parse and analyze distributed logs for anomalies." },
-    { name: "config_template", input: "service", output: "yaml_config", icon: Layout, description: "Generate compliant Infrastructure-as-Code manifests." },
-    { name: "code_deploy", input: "repo_url", output: "deployment_id", icon: GitBranch, description: "Automate code deployment pipelines from Git repositories." },
-    { name: "shell_execute", input: "command", output: "stdout", icon: Terminal, description: "Execute secure shell commands on remote infrastructure." },
-    { name: "scale_auto", input: "thresholds", output: "scaling_policy", icon: Zap, description: "Configure dynamic auto-scaling based on load thresholds." },
-    { name: "encrypt_data", input: "data", output: "encrypted_blob", icon: Lock, description: "Encrypt sensitive payloads using hardware security modules." },
-    { name: "loadbalancer_setup", input: "backends", output: "lb_ip", icon: Network, description: "Provision and configure global traffic load balancers." },
-    { name: "resource_optimize", input: "workload", output: "recommendations", icon: Cpu, description: "Analyze workloads to suggest cost and performance optimizations." },
-    { name: "network_topology", input: "region", output: "vpc_id", icon: Globe, description: "Design and implement private cloud network architectures." },
-    { name: "backup_manage", input: "schedule", output: "backup_id", icon: Save, description: "Schedule and manage automated data snapshots and backups." },
-    { name: "cost_forecast", input: "usage_pattern", output: "projection", icon: BarChart, description: "Predict infrastructure costs based on usage patterns." },
-    { name: "incident_resolve", input: "alert", output: "resolution", icon: Command, description: "Trigger automated remediation for infrastructure alerts." },
+    // Core Infrastructure (7)
+    { name: "discover", input: "query", output: "primitives", icon: Search, description: "Discover available infrastructure primitives (databases, proxies, caches)." },
+    { name: "validate_stack", input: "stackfile", output: "validation", icon: CheckCircle, description: "7-layer validation pipeline with actionable feedback." },
+    { name: "judge_stack", input: "stackfile", output: "judgment", icon: Scale, description: "5-analyzer wisdom assessment: security, cost, topology, policy, ops." },
+    { name: "manifest", input: "stackfile", output: "deployment", icon: Rocket, description: "Unified validate → judge → deploy in ONE atomic operation." },
+    { name: "get_stack_status", input: "deployment_id", output: "health", icon: Activity, description: "Real-time health monitoring and diagnostics." },
+    { name: "get_service_logs", input: "service", output: "logs", icon: FileText, description: "Service-level troubleshooting and analysis." },
+    { name: "destroy_stack", input: "deployment_id", output: "confirmation", icon: Trash2, description: "Complete infrastructure teardown with cleanup." },
+
+    // Cloud Operations (6 - Operation Midas)
+    { name: "cloud_login", input: "api_key", output: "session_id", icon: LogIn, description: "Authenticate with Menezis platform. Required first step." },
+    { name: "cloud_plans", input: "provider", output: "plans", icon: CreditCard, description: "List available server plans and pricing." },
+    { name: "cloud_provision", input: "plan", output: "node_id", icon: Server, description: "Provision cloud server with agent pre-installed." },
+    { name: "get_nodes", input: "session_id", output: "fleet", icon: Network, description: "Fleet management and status monitoring." },
+    { name: "cloud_destroy", input: "node_id", output: "confirmation", icon: XCircle, description: "Permanently destroy cloud server. Irreversible." },
+    { name: "billing_status", input: "session_id", output: "billing", icon: Receipt, description: "Cost tracking and subscription management." },
+
+    // Multi-Tenant (2 - Operation Fort Knox)
+    { name: "provision_instance", input: "stackfile", output: "instance", icon: Container, description: "Deploy containerized instance on shared infrastructure." },
+    { name: "modify_instance", input: "instance_id", output: "updated", icon: Settings, description: "Scale CPU/RAM/disk. Auto-migration if needed." },
+
+    // Security (1)
+    { name: "scan_cve", input: "package_json", output: "vulnerabilities", icon: Shield, description: "Scan for critical CVEs before deployment." },
 ];
 
 export function McpToolGrid() {
@@ -94,6 +102,7 @@ export function McpToolGrid() {
                                 </div>
                                 <button
                                     onClick={() => setSelectedTool(null)}
+                                    aria-label="Close tool details"
                                     className="text-neutral-500 hover:text-white transition-colors"
                                 >
                                     <X size={20} />

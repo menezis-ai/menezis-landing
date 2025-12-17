@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code when working with this repository.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
 
@@ -26,36 +26,38 @@ npm run lint         # ESLint
 - Result: Pure HTML files served by CDN
 
 ### Tech Stack
-- **Framework**: Next.js 16 (static export mode)
-- **Styling**: Tailwind CSS 4
+- **Framework**: Next.js 16 + React 19 (static export mode)
+- **Styling**: Tailwind CSS 4 with `@theme` directive
 - **Animations**: Framer Motion
 - **Icons**: Lucide React
-- **Fonts**: Inter, JetBrains Mono, Inconsolata
+- **Fonts**: Inter (sans), JetBrains Mono (mono), Inconsolata (terminal)
 
-### Design System (shared with Dashboard)
-- **Primary**: terminal-green (#00ff88)
-- **Alert**: alert-amber
-- **Info**: electric-blue
-- **Background**: Dark theme with grid pattern
+### Design System
+Theme colors defined in `globals.css`:
+- `terminal-green`: #00FF41 (primary accent)
+- `alert-amber`: #FFB000 (warnings/highlights)
+- `electric-blue`: #007AFF (info/links)
+- Background: #050505 with subtle grid pattern overlay
 
 ### Key Patterns
-- **Path alias**: `@/*` maps to `./src/*`
-- **CSS-in-Tailwind**: Custom theme colors defined in `globals.css` using `@theme` directive
-- **Component variants**: TechCard uses variant props for color theming
-- **i18n**: Client-side language switching (en/fr/es)
+- **Path alias**: `@/*` → `./src/*`
+- **cn() utility**: `src/lib/utils.ts` - combines clsx + tailwind-merge for className composition
+- **Component variants**: TechCard accepts `variant` prop ("default" | "alert" | "success" | "info") for theming
+- **All pages are client components**: `"use client"` directive required for Framer Motion animations
 
 ### Deployment
 - **Host**: Cloudflare Pages
-- **Domain**: menezis.io
+- **Domain**: menezis.ai
 - **Build command**: `npm run build`
 - **Output directory**: `out`
 
-## Key Files
+## Component Architecture
 
-- `src/app/page.tsx` - Main landing page
-- `src/app/globals.css` - Tailwind theme + custom colors
-- `src/components/ui/` - Reusable components
-- `next.config.ts` - Static export configuration
+- `src/app/page.tsx` - Single-page landing with 5 sections (Hero, Value Prop, Core Architecture, Arsenal, Pricing)
+- `src/app/layout.tsx` - Root layout with font loading via next/font
+- `src/components/ui/Terminal.tsx` - Hero animation with typing effect and state machine (IDLE → TYPING → PROCESSING → JUDGMENT → COMPLETE)
+- `src/components/ui/TechCard.tsx` - Reusable card with variant-based theming
+- `src/components/ui/BentoGrid.tsx`, `McpToolGrid.tsx`, `PricingTable.tsx` - Layout components
 
 ## Related Repositories
 

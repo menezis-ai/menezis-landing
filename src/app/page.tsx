@@ -72,7 +72,7 @@ export default function Home() {
             />
             <TechCard
               title="SOVEREIGN ECONOMICS"
-              description={<>Zero hidden fees. Pro-rata billing to the second.<br />Free Nano tier forever. Small at 12.99€/mo. Predictable costs, no surprise bills.</>}
+              description={<>Zero hidden fees. Pro-rata daily billing.<br />Free Nano tier forever. Small at 12.99€/mo. Predictable costs, no surprise bills.</>}
               icon={Coins}
               variant="alert"
               className="md:col-span-1"
@@ -90,7 +90,7 @@ export default function Home() {
           <BentoGrid className="mt-4">
             <TechCard
               title="AI-NATIVE DEPLOYMENT"
-              description={<>16 MCP tools for Claude, Cursor, Windsurf, Roo & Antigravity.<br />describe → validate (7 layers) → judge (5 analyzers) → deploy.<br />Natural language to running infrastructure.</>}
+              description={<>16 MCP tools for AI code assistants.<br />describe → validate (7 layers) → judge (5 analyzers) → deploy.<br />Natural language to running infrastructure.</>}
               icon={Sparkles}
               variant="default"
               className="md:col-span-1"
@@ -121,7 +121,7 @@ export default function Home() {
               <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2">
                 <GitCommit className="text-electric-blue" /> THE ARSENAL
               </h2>
-              <p className="font-mono text-sm text-neutral-500">16 MCP Tools. Native integration with Claude, Cursor, Windsurf, Roo, Antigravity.</p>
+              <p className="font-mono text-sm text-neutral-500">16 MCP Tools. Native integration with Claude Code, Cursor, Windsurf, and more.</p>
             </div>
             <div className="font-mono text-xs text-neutral-600 bg-white/5 px-3 py-1 rounded border border-white/5">
               npm install @menezis/sdk
@@ -171,7 +171,7 @@ export default function Home() {
             </div>
 
             <div className="flex gap-8">
-              <a href="https://docs.menezis.ai" className="hover:text-white transition-colors">Documentation</a>
+              <a href="/docs" className="hover:text-white transition-colors">Documentation</a>
               <a href="https://status.menezis.ai" className="hover:text-white transition-colors">Status</a>
               <a href="/legal" className="hover:text-white transition-colors">Legal</a>
               <a href="https://www.linkedin.com/company/menezis/" className="hover:text-white transition-colors flex items-center gap-1">

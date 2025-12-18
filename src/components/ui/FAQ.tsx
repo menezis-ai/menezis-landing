@@ -13,7 +13,7 @@ interface FAQItem {
 const FAQ_ITEMS: FAQItem[] = [
   {
     question: "What is MCP integration and how does it work?",
-    answer: "MCP (Model Context Protocol) enables AI assistants like Claude, Cursor, Windsurf, Roo, and Antigravity to directly interact with your infrastructure. Menezis provides 16 MCP tools including discover, validate_stack, judge_stack, manifest, and provision_instance. Simply describe your infrastructure in natural language—'Deploy a Ghost blog with PostgreSQL and Redis in Europe'—and the AI handles validation, judgment, and deployment automatically."
+    answer: "MCP (Model Context Protocol) enables AI code assistants to directly interact with your infrastructure. Menezis provides 16 MCP tools including discover, validate_stack, judge_stack, manifest, and provision_instance. Simply describe your infrastructure in natural language—'Deploy a Ghost blog with PostgreSQL and Redis in Europe'—and the AI handles validation, judgment, and deployment automatically."
   },
   {
     question: "What makes post-quantum security different?",

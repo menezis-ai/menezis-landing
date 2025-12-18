@@ -36,7 +36,7 @@ export function GhostPreviewModal({ isOpen, onClose }: GhostPreviewModalProps) {
                     </div>
                     <div className="flex-1 mx-4 bg-white rounded-md border border-neutral-200 px-3 py-1 text-xs text-neutral-500 flex items-center justify-center font-mono">
                         <Globe size={10} className="mr-2" />
-                        https://ghost-7f8e9d.menezis.com
+                        https://ghost-7f8e9d.menezis.io
                     </div>
                     <button onClick={onClose} className="text-neutral-400 hover:text-neutral-600">
                         <X size={16} />

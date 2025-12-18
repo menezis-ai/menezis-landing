@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     default: 'Menezis | Autonomous Infrastructure Platform',
     template: '%s | Menezis'
   },
-  description: 'Deploy infrastructure with natural language. 16 MCP tools for Claude, Cursor, Windsurf, Roo & Antigravity. Post-quantum ML-KEM-768 security. Free tier available. From 5.99€/month.',
+  description: 'Deploy infrastructure with natural language. 16 MCP tools for AI assistants. Post-quantum ML-KEM-768 security. Free tier available. From 5.99€/month.',
   keywords: [
     'MCP server',
     'Model Context Protocol',
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Menezis | Autonomous Infrastructure Platform',
-    description: 'Deploy infrastructure with natural language. Native MCP integration for Claude, Cursor & Windsurf.',
+    description: 'Deploy infrastructure with natural language. Native MCP integration for AI code assistants.',
     images: ['/og-image.png'],
     creator: '@menezis_ai',
   },

@@ -105,7 +105,7 @@ export function Terminal() {
 
                                 <div className="text-white/40">═══════════════════════════════════════════════════════════</div>
                                 <div className="text-white/90 py-1 font-bold">Infrastructure at the Speed of Thought.</div>
-                                <div className="text-white/50 text-xs py-1">16 MCP tools for Claude, Cursor, Windsurf, Roo & Antigravity. Post-quantum security.</div>
+                                <div className="text-white/50 text-xs py-1">16 MCP tools for AI code assistants. Post-quantum security.</div>
                                 <div className="text-white/40">═══════════════════════════════════════════════════════════</div>
                             </div>
 
@@ -184,7 +184,7 @@ export function Terminal() {
                                         </div>
                                         <div className="pl-6">
                                             <a href="#" onClick={handleLinkClick} className="text-neutral-300 hover:text-white border-b border-white/30 hover:border-white transition-colors">
-                                                https://ghost-7f8e9d0a.menezis.app
+                                                https://ghost-7f8e9d0a.menezis.io
                                             </a>
                                         </div>
                                     </div>

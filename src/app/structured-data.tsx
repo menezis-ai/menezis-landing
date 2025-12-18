@@ -115,7 +115,7 @@ export function StructuredData() {
         "name": "What is MCP integration?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "MCP (Model Context Protocol) enables AI assistants like Claude, Cursor, Windsurf, Roo, and Antigravity to directly interact with your infrastructure. Menezis provides 16 MCP tools including discover, validate_stack, judge_stack, manifest, provision_instance, and more. Simply describe your infrastructure in natural language, and the AI deploys it."
+          "text": "MCP (Model Context Protocol) enables AI code assistants to directly interact with your infrastructure. Menezis provides 16 MCP tools including discover, validate_stack, judge_stack, manifest, provision_instance, and more. Simply describe your infrastructure in natural language, and the AI deploys it."
         }
       },
       {

@@ -9,7 +9,7 @@ import { TechCard } from "@/components/ui/TechCard";
 import { McpToolGrid } from "@/components/ui/McpToolGrid";
 import { PricingTable } from "@/components/ui/PricingTable";
 import { FAQ } from "@/components/ui/FAQ";
-import { Shield, Coins, Network, GitCommit, ChevronDown, Sparkles, Eye, ArrowRightLeft, HelpCircle, Github } from "lucide-react";
+import { Shield, Coins, Network, GitCommit, ChevronDown, Sparkles, Eye, ArrowRightLeft, HelpCircle, Linkedin } from "lucide-react";
 
 export default function Home() {
 
@@ -173,8 +173,9 @@ export default function Home() {
             <div className="flex gap-8">
               <a href="https://docs.menezis.ai" className="hover:text-white transition-colors">Documentation</a>
               <a href="https://status.menezis.ai" className="hover:text-white transition-colors">Status</a>
-              <a href="https://github.com/JulienDbrt/sigilum" className="hover:text-white transition-colors flex items-center gap-1">
-                <Github size={12} /> GitHub
+              <a href="/legal" className="hover:text-white transition-colors">Legal</a>
+              <a href="https://www.linkedin.com/company/menezis/" className="hover:text-white transition-colors flex items-center gap-1">
+                <Linkedin size={12} /> LinkedIn
               </a>
             </div>
           </div>

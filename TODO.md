@@ -1,11 +1,15 @@
 # TODO - Menezis Landing
 
-## Assets to Create
-- [ ] `/public/og-image.png` (1200x630px) - Social sharing preview
-- [ ] `/public/apple-touch-icon.png` (180x180px) - iOS home screen icon
-- [ ] `/public/logo.png` - Brand logo for structured data
+## Assets à convertir
+- [ ] `og-image.html` → `og-image.png` (1200x630) - Screenshot navigateur
+- [ ] `logo.svg` → `logo.png` (512x512) - Pour structured data
+- [ ] `logo.svg` → `apple-touch-icon.png` (180x180) - iOS
 
-## Optional Enhancements
-- [ ] Add `/legal` and `/privacy` pages (currently 404)
-- [ ] Connect Google Search Console
-- [ ] Submit sitemap to Google/Bing
+## SEO / Indexation
+- [ ] Google Search Console - Ajouter propriété menezis.ai
+- [ ] Soumettre sitemap: https://menezis.ai/sitemap.xml
+- [ ] Bing Webmaster Tools (optionnel)
+
+## Post-lancement
+- [ ] Mettre à jour legal page quand SL Espagne créée
+- [ ] Analytics (Plausible/Umami recommandé - GDPR friendly)

@@ -8,7 +8,7 @@ export function StructuredData() {
     "description": "Autonomous Infrastructure Platform with Post-Quantum Security",
     "foundingDate": "2025",
     "sameAs": [
-      "https://github.com/JulienDbrt/sigilum"
+      "https://www.linkedin.com/company/menezis/"
     ],
     "contactPoint": {
       "@type": "ContactPoint",

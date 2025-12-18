@@ -84,7 +84,9 @@ export const metadata: Metadata = {
     canonical: 'https://menezis.ai',
   },
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
     apple: '/apple-touch-icon.png',
   },
   manifest: '/site.webmanifest',

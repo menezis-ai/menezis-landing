@@ -25,7 +25,7 @@ export default function Home() {
 
 
         {/* SECTION A: HERO */}
-        <Section className="min-h-screen flex flex-col justify-center pt-16 pb-0 sm:pt-20">
+        <Section className="min-h-screen flex flex-col justify-start pt-20 pb-0 sm:justify-center sm:pt-20">
           <Container>
             {/* SEO: Primary H1 - visually hidden but accessible */}
             <h1 className="sr-only">
@@ -35,16 +35,16 @@ export default function Home() {
             <Terminal />
 
             {/* Hero CTA */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center mt-6 md:mt-8 px-4 md:px-0">
               <a
                 href="/docs/quickstart"
-                className="px-8 py-4 bg-terminal-green text-black font-bold rounded-lg hover:bg-terminal-green/90 transition-all shadow-[0_0_30px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] text-center"
+                className="px-5 py-2.5 md:px-8 md:py-4 bg-terminal-green text-black text-sm md:text-base font-bold rounded-lg hover:bg-terminal-green/90 transition-all shadow-[0_0_30px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] text-center"
               >
                 Start Free — No Credit Card
               </a>
               <a
                 href="/docs"
-                className="px-8 py-4 border border-white/20 text-white font-medium rounded-lg hover:bg-white/5 transition-all text-center"
+                className="px-5 py-2.5 md:px-8 md:py-4 border border-white/20 text-white text-sm md:text-base font-medium rounded-lg hover:bg-white/5 transition-all text-center"
               >
                 View Documentation
               </a>

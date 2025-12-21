@@ -33,10 +33,17 @@ export function Header() {
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <a href="/" className="group">
+          {/* Mobile: PNG (renders better at small sizes) */}
+          <img
+            src="/logo-menezis.png"
+            alt="MENEZIS"
+            className="md:hidden h-6 w-auto transition-all group-hover:drop-shadow-[0_0_10px_rgba(0,255,65,0.6)]"
+          />
+          {/* Desktop: SVG */}
           <img
             src="/logo-menezis.svg"
             alt="MENEZIS"
-            className="h-6 md:h-8 w-auto transition-all group-hover:drop-shadow-[0_0_10px_rgba(0,255,65,0.6)]"
+            className="hidden md:block h-8 w-auto transition-all group-hover:drop-shadow-[0_0_10px_rgba(0,255,65,0.6)]"
           />
         </a>
 

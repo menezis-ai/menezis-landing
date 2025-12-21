@@ -7,6 +7,7 @@ import { RotateCcw } from "lucide-react";
 import { GhostPreviewModal } from "./GhostPreviewModal";
 
 const COMMAND = 'menezis deploy "Ghost blog with PostgreSQL and Redis cache in Europe"';
+const COMMAND_MOBILE = 'menezis deploy "Ghost + PostgreSQL in EU"';
 
 type Step = "IDLE" | "TYPING" | "PROCESSING" | "JUDGMENT" | "COMPLETE";
 
@@ -77,15 +78,97 @@ export function Terminal() {
 
     return (
         <>
-            {/* Layout Wrapper to strictly enforce dimensions and prevent resize jitter */}
-            <div
-                className="mx-auto select-none"
-                style={{ width: '750px', maxWidth: '100%', height: '850px' }}
-            >
+            {/* MOBILE VERSION */}
+            <div className="md:hidden mx-auto select-none w-full max-w-md px-4">
+                <div className="relative rounded-lg border border-white/10 bg-black/90 shadow-[0_0_40px_-10px_rgba(0,255,65,0.05)] backdrop-blur-sm overflow-hidden">
+                    {/* CRT Effect */}
+                    <div className="absolute inset-0 z-20 pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[size:100%_2px,3px_100%]" />
+
+                    {/* Title Bar */}
+                    <div className="flex items-center justify-between px-3 py-2 border-b border-white/10 bg-[#1A1A1A] z-30 relative">
+                        <div className="flex space-x-1.5">
+                            <div className="w-2.5 h-2.5 rounded-full bg-red-500/20 border border-red-500/50" />
+                            <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/20 border border-yellow-500/50" />
+                            <div className="w-2.5 h-2.5 rounded-full bg-green-500/20 border border-green-500/50" />
+                        </div>
+                        <div className="text-[10px] text-white/30 tracking-widest uppercase">menezis-terminal</div>
+                        <div className="w-8"></div>
+                    </div>
+
+                    {/* Mobile Body - Fixed height to prevent resize during animation */}
+                    <div className="p-5 font-mono text-xs leading-relaxed text-neutral-300 space-y-4 z-10 relative min-h-[240px]">
+                        {/* Command with animation */}
+                        {step !== "IDLE" && (
+                            <div className="text-[11px]">
+                                <span className="text-terminal-green">$</span>
+                                <span className="text-white ml-1">
+                                    {COMMAND_MOBILE.substring(0, typedChars)}
+                                    {step === "TYPING" && showCursor && <span className="bg-terminal-green/50 ml-0.5 inline-block w-1.5 h-3 align-middle">_</span>}
+                                </span>
+                            </div>
+                        )}
+
+                        {/* Processing */}
+                        {step !== "IDLE" && step !== "TYPING" && (
+                            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-[10px]">
+                                <span className="text-white font-bold">⚡ VALIDATION</span>
+                                <span className="text-neutral-400 ml-2">Syntax</span> <span className="text-terminal-green">OK</span>
+                                <span className="text-neutral-400 ml-1">·</span>
+                                <span className="text-neutral-400 ml-1">Resources</span> <span className="text-terminal-green">OK</span>
+                            </motion.div>
+                        )}
+
+                        {/* Judgment */}
+                        {(step === "JUDGMENT" || step === "COMPLETE") && (
+                            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-[10px]">
+                                <span className="text-white font-bold">🛡️ JUDGMENT</span>
+                                <span className="text-neutral-400 ml-2">Security</span> <span className="text-terminal-green">DONE</span>
+                                <span className="text-neutral-400 ml-1">·</span>
+                                <span className="text-neutral-400 ml-1">Cost</span> <span className="text-terminal-green">DONE</span>
+                                <span className="text-neutral-400 ml-1">·</span>
+                                <span className="text-neutral-400 ml-1">Reliability</span> <span className="text-terminal-green">DONE</span>
+                            </motion.div>
+                        )}
+
+                        {/* Complete */}
+                        {step === "COMPLETE" && (
+                            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-3">
+                                <div className="text-[11px] space-y-1">
+                                    <div className="flex items-center gap-2">
+                                        <span>📋</span>
+                                        <span className="text-white font-bold">MANIFEST</span>
+                                    </div>
+                                    <div className="pl-5 text-[10px] space-y-0.5">
+                                        <div><span className="text-neutral-500">id:</span> mzs_7f8e9d0a</div>
+                                        <div><span className="text-neutral-500">region:</span> eu-west-1</div>
+                                        <div><span className="text-neutral-500">stack:</span> Ghost + PostgreSQL + Redis</div>
+                                    </div>
+                                </div>
+
+                                <div className="text-[11px]">
+                                    <div className="text-terminal-green">✓ DEPLOYED</div>
+                                    <a href="#" onClick={handleLinkClick} className="text-neutral-300 hover:text-white text-[10px] border-b border-white/30 ml-3">
+                                        ghost-7f8e9d0a.menezis.io
+                                    </a>
+                                </div>
+
+                                <div className="flex justify-end">
+                                    <button onClick={handleReplay} className="flex items-center gap-1 text-neutral-500 hover:text-terminal-green text-[10px]">
+                                        <RotateCcw size={10} /> Replay
+                                    </button>
+                                </div>
+                            </motion.div>
+                        )}
+                    </div>
+                </div>
+            </div>
+
+            {/* DESKTOP VERSION */}
+            <div className="hidden md:block mx-auto select-none" style={{ width: '750px', maxWidth: '100%', height: '850px' }}>
                 <div
                     className="relative w-full h-full font-terminal-custom text-sm leading-relaxed overflow-hidden rounded-lg border border-white/10 bg-black/90 shadow-[0_0_40px_-10px_rgba(0,255,65,0.05)] backdrop-blur-sm flex flex-col"
                 >
-                    {/* CRT Scanline Effect Overlay - Now correctly placed inside the relative container */}
+                    {/* CRT Scanline Effect Overlay */}
                     <div className="absolute inset-0 z-20 pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[size:100%_2px,3px_100%]" />
 
                     {/* Title Bar */}
@@ -96,7 +179,7 @@ export function Terminal() {
                             <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50" />
                         </div>
                         <div className="text-xs text-white/30 tracking-widest uppercase">menezis-terminal v2.1.0</div>
-                        <div className="w-10"></div> {/* Spacer */}
+                        <div className="w-10"></div>
                     </div>
 
                     {/* Terminal Body */}
@@ -200,17 +283,22 @@ export function Terminal() {
                                         </div>
                                     </div>
 
-                                    {/* Replay Button */}
-                                    <button
-                                        onClick={handleReplay}
-                                        className="mt-4 flex items-center gap-2 text-neutral-500 hover:text-terminal-green transition-colors text-sm"
-                                    >
-                                        <RotateCcw size={14} />
-                                        <span>Replay demo</span>
-                                    </button>
                                 </motion.div>
                             )}
                         </div>
+
+                        {/* Replay Button - Outside overflow area */}
+                        {step === "COMPLETE" && (
+                            <div className="flex justify-end mt-4">
+                                <button
+                                    onClick={handleReplay}
+                                    className="flex items-center gap-2 text-neutral-500 hover:text-terminal-green transition-colors text-sm"
+                                >
+                                    <RotateCcw size={14} />
+                                    <span>Replay demo</span>
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

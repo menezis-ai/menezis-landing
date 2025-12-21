@@ -25,10 +25,18 @@ export function TechCard({ title, description, icon: Icon, className, variant = 
         info: "text-electric-blue bg-electric-blue/10 border-electric-blue/20 shadow-[0_0_20px_rgba(0,122,255,0.2)]"
     }
 
+    const hoverGlow = {
+        default: "hover:shadow-[0_0_30px_rgba(0,255,65,0.15)]",
+        alert: "hover:shadow-[0_0_30px_rgba(255,176,0,0.15)]",
+        success: "hover:shadow-[0_0_30px_rgba(0,255,65,0.15)]",
+        info: "hover:shadow-[0_0_30px_rgba(0,122,255,0.15)]"
+    };
+
     return (
         <div className={cn(
-            "p-6 rounded-lg border bg-[radial-gradient(circle_at_center,#111111_0%,#050505_100%)] backdrop-blur-sm transition-all duration-300 group hover:bg-white/5",
+            "p-6 rounded-lg border bg-[radial-gradient(circle_at_center,#111111_0%,#050505_100%)] backdrop-blur-sm transition-all duration-300 group hover:bg-white/5 hover:scale-[1.02] hover:-translate-y-1",
             variantColors[variant],
+            hoverGlow[variant],
             className
         )}>
             <div className={cn("mb-4 p-4 w-fit rounded-full border transition-all duration-300", iconStyles[variant])}>

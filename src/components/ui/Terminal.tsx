@@ -1,20 +1,21 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
+import { RotateCcw } from "lucide-react";
 import { GhostPreviewModal } from "./GhostPreviewModal";
 
 const COMMAND = 'menezis deploy "Ghost blog with PostgreSQL and Redis cache in Europe"';
 
 type Step = "IDLE" | "TYPING" | "PROCESSING" | "JUDGMENT" | "COMPLETE";
-type Timeout = ReturnType<typeof setTimeout>;
 
 export function Terminal() {
     const [step, setStep] = useState<Step>("TYPING");
     const [typedChars, setTypedChars] = useState(0);
     const [showCursor, setShowCursor] = useState(true);
     const [showPreview, setShowPreview] = useState(false);
+    const [animationKey, setAnimationKey] = useState(0);
 
     // Blinking cursor
     useEffect(() => {
@@ -25,6 +26,7 @@ export function Terminal() {
     // Main Sequencing
     useEffect(() => {
         let timeout: NodeJS.Timeout;
+        let cancelled = false;
 
         const runSequence = async () => {
             // 1. Start Typing
@@ -32,32 +34,41 @@ export function Terminal() {
             setTypedChars(0);
 
             for (let i = 0; i <= COMMAND.length; i++) {
-                await new Promise((r) => setTimeout(r, 30 + Math.random() * 30)); // Random typing speed
+                if (cancelled) return;
+                await new Promise((r) => setTimeout(r, 30 + Math.random() * 30));
                 setTypedChars(i);
             }
 
-            // 2. Processing
-            // await new Promise((r) => setTimeout(r, 500));
-            setStep("PROCESSING");
+            if (cancelled) return;
 
-            await new Promise((r) => setTimeout(r, 1500)); // Simulate parsing/discovery time
+            // 2. Processing
+            setStep("PROCESSING");
+            await new Promise((r) => setTimeout(r, 1500));
+
+            if (cancelled) return;
 
             // 3. Judgment
             setStep("JUDGMENT");
-            await new Promise((r) => setTimeout(r, 2000)); // Show analysis
+            await new Promise((r) => setTimeout(r, 2000));
+
+            if (cancelled) return;
 
             // 4. Complete
             setStep("COMPLETE");
-            // Loop removed: Animation plays only once.
         };
 
         // Initial delay
         timeout = setTimeout(runSequence, 200);
 
         return () => {
+            cancelled = true;
             clearTimeout(timeout);
         };
-    }, []);
+    }, [animationKey]);
+
+    const handleReplay = () => {
+        setAnimationKey((prev) => prev + 1);
+    };
 
     const handleLinkClick = (e: React.MouseEvent) => {
         e.preventDefault();
@@ -188,6 +199,15 @@ export function Terminal() {
                                             </a>
                                         </div>
                                     </div>
+
+                                    {/* Replay Button */}
+                                    <button
+                                        onClick={handleReplay}
+                                        className="mt-4 flex items-center gap-2 text-neutral-500 hover:text-terminal-green transition-colors text-sm"
+                                    >
+                                        <RotateCcw size={14} />
+                                        <span>Replay demo</span>
+                                    </button>
                                 </motion.div>
                             )}
                         </div>

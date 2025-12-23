@@ -99,7 +99,7 @@ export function PricingTable() {
                     Custom CPU, ECC RAM & NVMe storage à la carte. Dedicated infrastructure. White-glove onboarding.
                 </p>
                 <a href="mailto:enterprise@menezis.ai" className="inline-block px-6 py-2 bg-electric-blue/20 text-electric-blue border border-electric-blue/30 rounded font-mono text-sm hover:bg-electric-blue/30 transition-colors">
-                    Contact Sales →
+                    Request Access →
                 </a>
             </div>
         </div>

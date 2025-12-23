@@ -211,7 +211,7 @@ export default function PricingPage() {
           href="mailto:enterprise@menezis.ai"
           className="inline-block px-4 py-2 rounded bg-electric-blue/20 text-electric-blue font-mono text-sm hover:bg-electric-blue/30 transition-colors"
         >
-          Contact Sales →
+          Request Access →
         </a>
       </div>
 

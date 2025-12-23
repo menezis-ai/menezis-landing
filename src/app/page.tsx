@@ -40,7 +40,7 @@ export default function Home() {
                 href="/docs/quickstart"
                 className="px-5 py-2.5 md:px-8 md:py-4 bg-terminal-green text-black text-sm md:text-base font-bold rounded-lg hover:bg-terminal-green/90 transition-all shadow-[0_0_30px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] text-center"
               >
-                Start Free — No Credit Card
+                Deploy Now — Free Tier
               </a>
               <a
                 href="/docs"
@@ -195,6 +195,7 @@ export default function Home() {
                 <a href="/docs" className="hover:text-white transition-colors">Documentation</a>
                 <a href="https://status.menezis.ai" className="hover:text-white transition-colors">Status</a>
                 <a href="/legal" className="hover:text-white transition-colors">Legal</a>
+                <a href="/investors" className="hover:text-white transition-colors">Investors</a>
               </div>
             </div>
 

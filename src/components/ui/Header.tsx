@@ -9,6 +9,7 @@ const NAV_ITEMS = [
   { href: "#arsenal", label: "Arsenal" },
   { href: "#pricing", label: "Pricing" },
   { href: "/docs", label: "Docs" },
+  { href: "/investors", label: "Investors" },
 ];
 
 export function Header() {
@@ -64,9 +65,9 @@ export function Header() {
         <div className="hidden md:flex items-center gap-4">
           <a
             href="/docs/quickstart"
-            className="px-4 py-2 bg-terminal-green text-black font-bold rounded hover:bg-terminal-green/90 transition-all hover:shadow-[0_0_20px_rgba(0,255,65,0.3)]"
+            className="px-4 py-2 bg-terminal-green text-black font-bold rounded hover:bg-terminal-green/90 transition-all shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_30px_rgba(0,255,65,0.4)]"
           >
-            Get Started
+            DEPLOY NOW
           </a>
         </div>
 
@@ -99,7 +100,7 @@ export function Header() {
               className="mt-2 px-4 py-3 bg-terminal-green text-black font-bold rounded text-center hover:bg-terminal-green/90 transition-all"
               onClick={() => setMobileOpen(false)}
             >
-              Get Started
+              DEPLOY NOW
             </a>
           </nav>
         </div>

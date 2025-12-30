@@ -7,11 +7,24 @@ import { Header } from "@/components/ui/Header";
 import { Terminal } from "@/components/ui/Terminal";
 import { BentoGrid } from "@/components/ui/BentoGrid";
 import { TechCard } from "@/components/ui/TechCard";
-import { McpToolGrid } from "@/components/ui/McpToolGrid";
-import { PricingTable } from "@/components/ui/PricingTable";
-import { FAQ } from "@/components/ui/FAQ";
 import { SocialProof } from "@/components/ui/SocialProof";
 import { Shield, Coins, Network, GitCommit, ChevronDown, Sparkles, Eye, ArrowRightLeft, HelpCircle } from "lucide-react";
+import dynamic from "next/dynamic";
+
+// ⚡ Bolt: Lazy-load components below the fold to improve initial page load performance.
+// These components are not visible until the user scrolls, so we can defer loading them.
+// This reduces the initial JavaScript bundle size, leading to a faster Time to Interactive (TTI).
+const McpToolGrid = dynamic(() => import("@/components/ui/McpToolGrid").then(mod => mod.McpToolGrid), {
+  // Simple placeholder to prevent layout shift while the component loads.
+  loading: () => <div className="h-[250px] w-full rounded-lg bg-white/5 animate-pulse" />,
+});
+const PricingTable = dynamic(() => import("@/components/ui/PricingTable").then(mod => mod.PricingTable), {
+  loading: () => <div className="h-[600px] w-full rounded-lg bg-white/5 animate-pulse" />,
+});
+const FAQ = dynamic(() => import("@/components/ui/FAQ").then(mod => mod.FAQ), {
+  loading: () => <div className="h-[400px] w-full rounded-lg bg-white/5 animate-pulse" />,
+});
+
 
 export default function Home() {
 

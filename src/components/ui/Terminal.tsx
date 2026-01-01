@@ -312,7 +312,7 @@ export function Terminal() {
     );
 }
 
-function JudgmentRow({ label, score, total, bars }: { label: string, score: number, total: number, bars: string }) {
+const JudgmentRow = React.memo(function JudgmentRow({ label, score, total, bars }: { label: string, score: number, total: number, bars: string }) {
     return (
         <div className="grid grid-cols-[180px_100px_1fr] gap-4 text-neutral-300">
             <span>{label}</span>
@@ -320,4 +320,4 @@ function JudgmentRow({ label, score, total, bars }: { label: string, score: numb
             <span className="text-terminal-green tracking-tight">{bars}</span>
         </div>
     )
-}
+});

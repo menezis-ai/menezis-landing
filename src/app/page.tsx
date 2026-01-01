@@ -63,9 +63,9 @@ export default function Home() {
               </a>
             </div>
 
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-50 animate-bounce">
+            <a href="#architecture" aria-label="Scroll to next section" className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-50 hover:opacity-100 focus:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-terminal-green rounded-full transition-opacity animate-bounce">
               <ChevronDown className="text-white w-6 h-6" />
-            </div>
+            </a>
           </Container>
         </Section>
 

@@ -1,68 +1,89 @@
+# =============================================================================
+# Multi-stage Dockerfile for Next.js Static Export
+# Serves static files via nginx (optimized for output: "export")
+# =============================================================================
 
-# Base image
-FROM node:18-alpine AS base
-
-# Install dependencies only when needed
-FROM base AS deps
+# -----------------------------------------------------------------------------
+# Stage 1: Dependencies
+# -----------------------------------------------------------------------------
+FROM node:18-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-# Install dependencies based on the preferred package manager
-COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
-RUN \
-  if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
-  elif [ -f package-lock.json ]; then npm ci; \
-  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i --frozen-lockfile; \
-  else echo "Lockfile not found." && exit 1; \
-  fi
+COPY package.json package-lock.json* ./
+RUN npm ci --ignore-scripts
 
-# Rebuild the source code only when needed
-FROM base AS builder
+# -----------------------------------------------------------------------------
+# Stage 2: Builder
+# -----------------------------------------------------------------------------
+FROM node:18-alpine AS builder
 WORKDIR /app
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Next.js collects completely anonymous telemetry data about general usage.
-# Learn more here: https://nextjs.org/telemetry
-# Uncomment the following line in case you want to disable telemetry during the build.
-# ENV NEXT_TELEMETRY_DISABLED 1
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV NODE_ENV=production
 
-RUN \
-  if [ -f yarn.lock ]; then yarn run build; \
-  elif [ -f package-lock.json ]; then npm run build; \
-  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build; \
-  else echo "Lockfile not found." && exit 1; \
-  fi
+RUN npm run build
 
-# Production image, copy all the files and run next
-FROM base AS runner
-WORKDIR /app
+# -----------------------------------------------------------------------------
+# Stage 3: Production (nginx serving static files)
+# -----------------------------------------------------------------------------
+FROM nginx:alpine AS runner
 
-ENV NODE_ENV production
-# Uncomment the following line in case you want to disable telemetry during runtime.
-# ENV NEXT_TELEMETRY_DISABLED 1
+# Security: run as non-root
+RUN addgroup -g 1001 -S nextjs && \
+    adduser -S nextjs -u 1001 -G nextjs
 
-# Don't run production as root
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+# Copy static export output
+COPY --from=builder /app/out /usr/share/nginx/html
 
-COPY --from=builder /app/public ./public
+# Custom nginx config for SPA routing
+RUN cat > /etc/nginx/conf.d/default.conf << 'EOF'
+server {
+    listen 3000;
+    server_name localhost;
+    root /usr/share/nginx/html;
+    index index.html;
 
-# Set the correct permission for prerender cache
-mkdir .next
-chown nextjs:nodejs .next
+    # Gzip compression
+    gzip on;
+    gzip_types text/plain text/css application/json application/javascript text/xml application/xml;
 
-# Automatically leverage output traces to reduce image size
-# https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+    # Security headers
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+
+    # Cache static assets
+    location /_next/static/ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+
+    # Handle static files
+    location / {
+        try_files $uri $uri.html $uri/ /index.html;
+    }
+
+    # Health check endpoint
+    location /health {
+        return 200 'OK';
+        add_header Content-Type text/plain;
+    }
+}
+EOF
+
+# Fix permissions for nginx to run as non-root
+RUN chown -R nextjs:nextjs /usr/share/nginx/html && \
+    chown -R nextjs:nextjs /var/cache/nginx && \
+    chown -R nextjs:nextjs /var/log/nginx && \
+    touch /var/run/nginx.pid && \
+    chown nextjs:nextjs /var/run/nginx.pid
 
 USER nextjs
 
 EXPOSE 3000
 
-ENV PORT 3000
-# set hostname to localhost
-ENV HOSTNAME "0.0.0.0"
-
-CMD ["node", "server.js"]
+CMD ["nginx", "-g", "daemon off;"]

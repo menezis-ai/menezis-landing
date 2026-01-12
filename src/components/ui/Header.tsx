@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 
@@ -33,7 +34,7 @@ export function Header() {
     >
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <a href="/" className="group">
+        <Link href="/" className="group">
           {/* Mobile: PNG (renders better at small sizes) */}
           <img
             src="/logo-menezis.png"
@@ -46,7 +47,7 @@ export function Header() {
             alt="MENEZIS"
             className="hidden md:block h-8 w-auto transition-all group-hover:drop-shadow-[0_0_10px_rgba(0,255,65,0.6)]"
           />
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8 font-mono text-sm">

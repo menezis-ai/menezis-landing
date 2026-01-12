@@ -3,7 +3,8 @@
 import React from "react";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { Shield, TrendingUp, Globe, Server, CheckCircle, ArrowRight, Building2, Lock, Zap, Users } from "lucide-react";
+import { Shield, TrendingUp, Globe, Server, CheckCircle, ArrowRight, Building2, Lock, Zap } from "lucide-react";
+import Link from "next/link";
 
 const COMPLIANCE_BADGES = [
   { label: "GDPR", description: "Fully Compliant" },
@@ -34,13 +35,13 @@ export default function InvestorsPage() {
       {/* Header */}
       <header className="border-b border-white/10 bg-black/80 backdrop-blur-md">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <a href="/" className="group">
+          <Link href="/" className="group">
             <img
               src="/logo-menezis.svg"
               alt="MENEZIS"
               className="h-8 w-auto"
             />
-          </a>
+          </Link>
           <a
             href="mailto:investors@menezis.ai"
             className="px-4 py-2 bg-white/10 text-white font-medium rounded hover:bg-white/20 transition-all text-sm"
@@ -322,8 +323,8 @@ export default function InvestorsPage() {
               full control of their infrastructure and data.
             </p>
             <p className="text-neutral-500 italic">
-              "The question is not if European companies will need sovereign infrastructure,
-              but when they will realize they always needed it."
+              &quot;The question is not if European companies will need sovereign infrastructure,
+              but when they will realize they always needed it.&quot;
             </p>
           </div>
         </Container>
@@ -344,12 +345,12 @@ export default function InvestorsPage() {
               >
                 Request Investor Deck <ArrowRight size={18} />
               </a>
-              <a
+              <Link
                 href="/"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-medium rounded-lg hover:bg-white/5 transition-all"
               >
                 View Product
-              </a>
+              </Link>
             </div>
           </div>
         </Container>
@@ -364,9 +365,9 @@ export default function InvestorsPage() {
               GDPR Compliant · NIS2 Ready · EU-Based
             </div>
             <div className="flex gap-6">
-              <a href="/" className="hover:text-white transition-colors">Product</a>
-              <a href="/docs" className="hover:text-white transition-colors">Documentation</a>
-              <a href="/legal" className="hover:text-white transition-colors">Legal</a>
+              <Link href="/" className="hover:text-white transition-colors">Product</Link>
+              <Link href="/docs" className="hover:text-white transition-colors">Documentation</Link>
+              <Link href="/legal" className="hover:text-white transition-colors">Legal</Link>
             </div>
           </div>
         </Container>

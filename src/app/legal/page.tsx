@@ -60,7 +60,7 @@ export default function LegalPage() {
                 <ul className="list-disc list-inside space-y-1 text-neutral-400">
                   <li>Right of access to your personal data</li>
                   <li>Right to rectification of inaccurate data</li>
-                  <li>Right to erasure ("right to be forgotten")</li>
+                  <li>Right to erasure (&quot;right to be forgotten&quot;)</li>
                   <li>Right to restriction of processing</li>
                   <li>Right to data portability</li>
                   <li>Right to object to processing</li>

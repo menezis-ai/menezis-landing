@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { RotateCcw } from "lucide-react";
 import { GhostPreviewModal } from "./GhostPreviewModal";
@@ -26,7 +25,6 @@ export function Terminal() {
 
     // Main Sequencing
     useEffect(() => {
-        let timeout: NodeJS.Timeout;
         let cancelled = false;
 
         const runSequence = async () => {
@@ -59,7 +57,7 @@ export function Terminal() {
         };
 
         // Initial delay
-        timeout = setTimeout(runSequence, 200);
+        const timeout = setTimeout(runSequence, 200);
 
         return () => {
             cancelled = true;

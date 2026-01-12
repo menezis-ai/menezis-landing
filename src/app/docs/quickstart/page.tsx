@@ -2,8 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Rocket, Terminal, Check, ArrowRight, Copy, ExternalLink } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Rocket, Check, ArrowRight, Copy } from "lucide-react";
 
 const STEPS = [
   {
@@ -43,7 +42,7 @@ const STEPS = [
   },
 ];
 
-function CodeBlock({ code, language = "typescript" }: { code: string; language?: string }) {
+function CodeBlock({ code, language: _language = "typescript" }: { code: string; language?: string }) {
   const [copied, setCopied] = React.useState(false);
 
   const handleCopy = () => {
@@ -142,7 +141,7 @@ export default function QuickstartPage() {
             <Check size={20} />
           </div>
           <div>
-            <h3 className="font-bold text-white mb-1">You're ready!</h3>
+            <h3 className="font-bold text-white mb-1">You&apos;re ready!</h3>
             <p className="text-sm text-neutral-400 mb-4">
               Your stack is now deployed and accessible at your unique URL.
             </p>

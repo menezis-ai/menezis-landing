@@ -7,7 +7,6 @@ import {
     Trash2, LogIn, CreditCard, Server, Network, XCircle,
     Receipt, Container, Settings, Shield, X
 } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 interface Tool {
     name: string;

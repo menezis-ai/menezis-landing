@@ -99,7 +99,7 @@ export default function Home() {
             <BentoGrid>
               <TechCard
                 title="POST-QUANTUM SANCTUARY"
-                description={<>Four-layer security: mTLS + JWT + ML-KEM-768 + AES-256-GCM.<br />NIST FIPS 203 standardized. Protected against threats that don't exist yet.</>}
+                description={<>Four-layer security: mTLS + JWT + ML-KEM-768 + AES-256-GCM.<br />NIST FIPS 203 standardized. Protected against threats that don&apos;t exist yet.</>}
                 icon={Shield}
                 variant="default"
                 className="md:col-span-1"
@@ -214,8 +214,8 @@ export default function Home() {
 
             <div className="mt-12 text-center">
               <p className="font-mono text-neutral-500 text-sm max-w-xl mx-auto">
-                "Kubernetes is for people who like configuring Kubernetes.<br />
-                <span className="text-terminal-green">Menezis is for people who like shipping.</span>"
+                &quot;Kubernetes is for people who like configuring Kubernetes.<br />
+                <span className="text-terminal-green">Menezis is for people who like shipping.</span>&quot;
               </p>
             </div>
           </Container>

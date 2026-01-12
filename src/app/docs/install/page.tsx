@@ -70,7 +70,7 @@ const CLIENTS = [
   },
 ];
 
-function CodeBlock({ code, language = "json" }: { code: string; language?: string }) {
+function CodeBlock({ code, language: _language = "json" }: { code: string; language?: string }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
@@ -275,9 +275,9 @@ export default function InstallPage() {
             Try asking your AI assistant:
           </p>
           <div className="p-4 rounded-lg border border-terminal-green/30 bg-terminal-green/5 font-mono text-sm">
-            <span className="text-neutral-500">"</span>
+            <span className="text-neutral-500">&quot;</span>
             <span className="text-white">Deploy a Ghost blog with PostgreSQL in Europe</span>
-            <span className="text-neutral-500">"</span>
+            <span className="text-neutral-500">&quot;</span>
           </div>
         </div>
       </div>
@@ -289,7 +289,7 @@ export default function InstallPage() {
             <Check size={20} />
           </div>
           <div>
-            <h3 className="font-bold text-white mb-1">You're ready!</h3>
+            <h3 className="font-bold text-white mb-1">You&apos;re ready!</h3>
             <p className="text-sm text-neutral-400">
               Menezis is now connected. You have access to 16 MCP tools for infrastructure deployment.
             </p>

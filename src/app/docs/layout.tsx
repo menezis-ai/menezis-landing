@@ -7,7 +7,7 @@ import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/utils";
 import {
   Home, Zap, Wrench, Shield, ChevronLeft,
-  BookOpen, Rocket, Server, CreditCard
+  BookOpen, Rocket, CreditCard
 } from "lucide-react";
 
 const NAV_ITEMS = [

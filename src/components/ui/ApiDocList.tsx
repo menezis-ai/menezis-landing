@@ -18,7 +18,7 @@ const TOOLS: ToolDef[] = [
 export function ApiDocList() {
     return (
         <div className="w-full font-mono text-sm border-t border-white/10">
-            {TOOLS.map((tool, idx) => (
+            {TOOLS.map((tool) => (
                 <div key={tool.name} className="group border-b border-white/10 hover:bg-white/5 transition-colors">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 grid grid-cols-1 md:grid-cols-12 gap-4">
                         <div className="md:col-span-5 flex items-center gap-3">

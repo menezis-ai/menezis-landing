@@ -81,7 +81,7 @@ export function GhostPreviewModal({ isOpen, onClose }: GhostPreviewModalProps) {
                             </div>
                             <h2 className="text-2xl font-bold mb-2 group-hover:text-neutral-600 transition-colors">Start here for a quick overview of everything you need to know</h2>
                             <p className="text-neutral-500 line-clamp-2">
-                                We've crammed the most important information to help you get started with Ghost into this one post. It's your primary resource...
+                                We&apos;ve crammed the most important information to help you get started with Ghost into this one post. It&apos;s your primary resource...
                             </p>
                         </article>
 

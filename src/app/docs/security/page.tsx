@@ -2,7 +2,6 @@
 
 import React from "react";
 import { Shield, Lock, Key, Eye, Server, CheckCircle } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 const SECURITY_LAYERS = [
   {
@@ -50,7 +49,7 @@ export default function SecurityPage() {
         </div>
         <p className="text-lg text-neutral-400">
           Four-layer security architecture with post-quantum cryptography.
-          Protected against threats that don't exist yet.
+          Protected against threats that don&apos;t exist yet.
         </p>
       </div>
 

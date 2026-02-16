@@ -32,8 +32,8 @@ const SECURITY_LAYERS = [
 
 const COMPLIANCE = [
   { name: "GDPR", description: "EU General Data Protection Regulation" },
-  { name: "SOC 2 Type II", description: "In progress - Expected Q2 2025" },
-  { name: "ISO 27001", description: "In progress - Expected Q2 2025" },
+  { name: "SOC 2 Type II", description: "In progress - Expected Q3 2026" },
+  { name: "ISO 27001", description: "In progress - Expected Q4 2026" },
 ];
 
 export default function SecurityPage() {

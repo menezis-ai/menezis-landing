@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { X, Globe } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -71,9 +72,10 @@ export function GhostPreviewModal({ isOpen, onClose }: GhostPreviewModalProps) {
                     <div className="max-w-4xl mx-auto w-full px-6 pb-20 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                         <article className="col-span-1 sm:col-span-3 lg:col-span-2 group cursor-pointer">
                             <div className="aspect-video bg-neutral-100 rounded-xl mb-4 overflow-hidden relative">
-                                <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1974&auto=format&fit=crop"
+                                <Image src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1974&auto=format&fit=crop"
                                     alt="Cover"
-                                    className="object-cover w-full h-full opacity-80 group-hover:scale-105 transition-transform duration-500"
+                                    fill
+                                    className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-500"
                                 />
                             </div>
                             <div className="flex gap-2 text-xs font-bold text-pink-600 mb-2 uppercase tracking-wide">
@@ -86,10 +88,11 @@ export function GhostPreviewModal({ isOpen, onClose }: GhostPreviewModalProps) {
                         </article>
 
                         <article className="col-span-1 group cursor-pointer">
-                            <div className="aspect-video bg-neutral-100 rounded-xl mb-4 overflow-hidden">
-                                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop"
+                            <div className="aspect-video bg-neutral-100 rounded-xl mb-4 overflow-hidden relative">
+                                <Image src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop"
                                     alt="Cover"
-                                    className="object-cover w-full h-full opacity-80 group-hover:scale-105 transition-transform duration-500"
+                                    fill
+                                    className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-500"
                                 />
                             </div>
                             <div className="flex gap-2 text-xs font-bold text-blue-600 mb-2 uppercase tracking-wide">

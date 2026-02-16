@@ -42,7 +42,7 @@ const STEPS = [
   },
 ];
 
-function CodeBlock({ code, language: _language = "typescript" }: { code: string; language?: string }) {
+function CodeBlock({ code }: { code: string }) {
   const [copied, setCopied] = React.useState(false);
 
   const handleCopy = () => {

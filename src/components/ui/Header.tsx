@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
@@ -36,15 +37,19 @@ export function Header() {
         {/* Logo */}
         <Link href="/" className="group">
           {/* Mobile: PNG (renders better at small sizes) */}
-          <img
+          <Image
             src="/logo-menezis.png"
             alt="MENEZIS"
+            width={120}
+            height={24}
             className="md:hidden h-6 w-auto transition-all group-hover:drop-shadow-[0_0_10px_rgba(0,255,65,0.6)]"
           />
           {/* Desktop: SVG */}
-          <img
+          <Image
             src="/logo-menezis.svg"
             alt="MENEZIS"
+            width={160}
+            height={32}
             className="hidden md:block h-8 w-auto transition-all group-hover:drop-shadow-[0_0_10px_rgba(0,255,65,0.6)]"
           />
         </Link>

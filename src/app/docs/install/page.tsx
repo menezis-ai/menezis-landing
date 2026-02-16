@@ -70,7 +70,7 @@ const CLIENTS = [
   },
 ];
 
-function CodeBlock({ code, language: _language = "json" }: { code: string; language?: string }) {
+function CodeBlock({ code }: { code: string }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {

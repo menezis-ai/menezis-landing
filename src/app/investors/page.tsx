@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Shield, TrendingUp, Globe, Server, CheckCircle, ArrowRight, Building2, Lock, Zap } from "lucide-react";
@@ -36,9 +37,11 @@ export default function InvestorsPage() {
       <header className="border-b border-white/10 bg-black/80 backdrop-blur-md">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" className="group">
-            <img
+            <Image
               src="/logo-menezis.svg"
               alt="MENEZIS"
+              width={160}
+              height={32}
               className="h-8 w-auto"
             />
           </Link>

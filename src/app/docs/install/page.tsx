@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { Download, Check, Copy } from "lucide-react";
+import { Download, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { CodeBlock } from "@/components/ui/CodeBlock";
 
 const CLIENTS = [
   {
@@ -69,31 +70,6 @@ const CLIENTS = [
     note: null,
   },
 ];
-
-function CodeBlock({ code }: { code: string }) {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  return (
-    <div className="relative group">
-      <pre className="p-4 rounded-lg bg-black/80 border border-white/10 font-mono text-sm text-neutral-300 overflow-x-auto">
-        <code>{code}</code>
-      </pre>
-      <button
-        onClick={handleCopy}
-        className="absolute top-2 right-2 p-2 rounded bg-white/5 text-neutral-500 hover:text-white hover:bg-white/10 transition-colors opacity-0 group-hover:opacity-100"
-        title="Copy to clipboard"
-      >
-        {copied ? <Check size={14} /> : <Copy size={14} />}
-      </button>
-    </div>
-  );
-}
 
 export default function InstallPage() {
   const [selectedClient, setSelectedClient] = useState("claude");

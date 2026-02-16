@@ -9,6 +9,7 @@
   --color-terminal-green: #00FF41;
   --color-alert-amber: #FFB000;
   --color-electric-blue: #007AFF;
+  --color-terminal-titlebar: #1A1A1A;
 
   /* DIRECT MAPPING TO NEXT.JS VARIABLES */
   --font-sans: var(--font-inter), sans-serif;
@@ -46,4 +47,11 @@ body {
 
 .tech-text-shadow {
   text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+}
+
+.crt-scanlines {
+  background-image:
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  background-size: 100% 2px, 3px 100%;
 }

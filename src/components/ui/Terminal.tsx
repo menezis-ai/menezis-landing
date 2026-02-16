@@ -8,6 +8,13 @@ import { GhostPreviewModal } from "./GhostPreviewModal";
 const COMMAND = 'menezis deploy "Ghost blog with PostgreSQL and Redis cache in Europe"';
 const COMMAND_MOBILE = 'menezis deploy "Ghost + PostgreSQL in EU"';
 
+const CURSOR_BLINK_MS = 500;
+const TYPING_BASE_MS = 30;
+const TYPING_JITTER_MS = 30;
+const PROCESSING_DELAY_MS = 1500;
+const JUDGMENT_DELAY_MS = 2000;
+const INITIAL_DELAY_MS = 200;
+
 type Step = "IDLE" | "TYPING" | "PROCESSING" | "JUDGMENT" | "COMPLETE";
 
 export function Terminal() {
@@ -19,7 +26,7 @@ export function Terminal() {
 
     // Blinking cursor
     useEffect(() => {
-        const interval = setInterval(() => setShowCursor((prev) => !prev), 500);
+        const interval = setInterval(() => setShowCursor((prev) => !prev), CURSOR_BLINK_MS);
         return () => clearInterval(interval);
     }, []);
 
@@ -34,7 +41,7 @@ export function Terminal() {
 
             for (let i = 0; i <= COMMAND.length; i++) {
                 if (cancelled) return;
-                await new Promise((r) => setTimeout(r, 30 + Math.random() * 30));
+                await new Promise((r) => setTimeout(r, TYPING_BASE_MS + Math.random() * TYPING_JITTER_MS));
                 setTypedChars(i);
             }
 
@@ -42,13 +49,13 @@ export function Terminal() {
 
             // 2. Processing
             setStep("PROCESSING");
-            await new Promise((r) => setTimeout(r, 1500));
+            await new Promise((r) => setTimeout(r, PROCESSING_DELAY_MS));
 
             if (cancelled) return;
 
             // 3. Judgment
             setStep("JUDGMENT");
-            await new Promise((r) => setTimeout(r, 2000));
+            await new Promise((r) => setTimeout(r, JUDGMENT_DELAY_MS));
 
             if (cancelled) return;
 
@@ -57,7 +64,7 @@ export function Terminal() {
         };
 
         // Initial delay
-        const timeout = setTimeout(runSequence, 200);
+        const timeout = setTimeout(runSequence, INITIAL_DELAY_MS);
 
         return () => {
             cancelled = true;
@@ -80,10 +87,10 @@ export function Terminal() {
             <div className="md:hidden mx-auto select-none w-full max-w-md px-4">
                 <div className="relative rounded-lg border border-white/10 bg-black/90 shadow-[0_0_40px_-10px_rgba(0,255,65,0.05)] backdrop-blur-sm overflow-hidden">
                     {/* CRT Effect */}
-                    <div className="absolute inset-0 z-20 pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[size:100%_2px,3px_100%]" />
+                    <div className="absolute inset-0 z-20 pointer-events-none opacity-[0.03] crt-scanlines" />
 
                     {/* Title Bar */}
-                    <div className="flex items-center justify-between px-3 py-2 border-b border-white/10 bg-[#1A1A1A] z-30 relative">
+                    <div className="flex items-center justify-between px-3 py-2 border-b border-white/10 bg-terminal-titlebar z-30 relative">
                         <div className="flex space-x-1.5">
                             <div className="w-2.5 h-2.5 rounded-full bg-red-500/20 border border-red-500/50" />
                             <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/20 border border-yellow-500/50" />
@@ -162,15 +169,15 @@ export function Terminal() {
             </div>
 
             {/* DESKTOP VERSION */}
-            <div className="hidden md:block mx-auto select-none" style={{ width: '750px', maxWidth: '100%', height: '850px' }}>
+            <div className="hidden md:block mx-auto select-none w-[750px] max-w-full h-[850px]">
                 <div
                     className="relative w-full h-full font-terminal-custom text-sm leading-relaxed overflow-hidden rounded-lg border border-white/10 bg-black/90 shadow-[0_0_40px_-10px_rgba(0,255,65,0.05)] backdrop-blur-sm flex flex-col"
                 >
                     {/* CRT Scanline Effect Overlay */}
-                    <div className="absolute inset-0 z-20 pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[size:100%_2px,3px_100%]" />
+                    <div className="absolute inset-0 z-20 pointer-events-none opacity-[0.03] crt-scanlines" />
 
                     {/* Title Bar */}
-                    <div className="flex items-center justify-between px-4 py-2 border-b border-white/10 bg-[#1A1A1A] font-sans z-30 relative">
+                    <div className="flex items-center justify-between px-4 py-2 border-b border-white/10 bg-terminal-titlebar font-sans z-30 relative">
                         <div className="flex space-x-2">
                             <div className="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50" />
                             <div className="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/50" />

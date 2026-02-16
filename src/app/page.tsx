@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Header } from "@/components/ui/Header";
@@ -8,14 +8,10 @@ import { Terminal } from "@/components/ui/Terminal";
 import { BentoGrid } from "@/components/ui/BentoGrid";
 import { TechCard } from "@/components/ui/TechCard";
 import { SocialProof } from "@/components/ui/SocialProof";
-import { Shield, Coins, Network, GitCommit, ChevronDown, Sparkles, Eye, ArrowRightLeft, HelpCircle } from "lucide-react";
+import { Shield, Coins, Network, GitCommit, ChevronDown, Sparkles, Eye, ArrowRightLeft, HelpCircle, Copy, Check, Zap, Lock, Cpu } from "lucide-react";
 import dynamic from "next/dynamic";
 
-// ⚡ Bolt: Lazy-load components below the fold to improve initial page load performance.
-// These components are not visible until the user scrolls, so we can defer loading them.
-// This reduces the initial JavaScript bundle size, leading to a faster Time to Interactive (TTI).
 const McpToolGrid = dynamic(() => import("@/components/ui/McpToolGrid").then(mod => mod.McpToolGrid), {
-  // Simple placeholder to prevent layout shift while the component loads.
   loading: () => <div className="h-[250px] w-full rounded-lg bg-white/5 animate-pulse" />,
 });
 const PricingTable = dynamic(() => import("@/components/ui/PricingTable").then(mod => mod.PricingTable), {
@@ -25,9 +21,34 @@ const FAQ = dynamic(() => import("@/components/ui/FAQ").then(mod => mod.FAQ), {
   loading: () => <div className="h-[400px] w-full rounded-lg bg-white/5 animate-pulse" />,
 });
 
+function InstallCommand() {
+  const [copied, setCopied] = useState(false);
+  const command = "npx menezis init";
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(command);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div
+      onClick={handleCopy}
+      className="group relative flex items-center gap-3 px-4 py-3 bg-black/80 border border-white/20 rounded-lg cursor-pointer hover:border-terminal-green/50 transition-all shadow-[0_0_20px_rgba(0,0,0,0.5)] hover:shadow-[0_0_20px_rgba(0,255,65,0.1)]"
+    >
+      <span className="text-terminal-green font-mono select-none">$</span>
+      <code className="font-mono text-white text-sm">{command}</code>
+      <div className="ml-2 text-neutral-500 opacity-0 group-hover:opacity-100 transition-opacity">
+        {copied ? <Check size={14} className="text-terminal-green" /> : <Copy size={14} />}
+      </div>
+      <div className="absolute -top-3 left-3 bg-black px-1 text-[10px] text-neutral-500 uppercase tracking-widest font-mono">
+        One Command
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
-
   return (
     <>
       <Header />
@@ -36,66 +57,101 @@ export default function Home() {
         {/* Background Grid Pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
 
-
-        {/* SECTION A: HERO */}
-        <Section className="min-h-screen flex flex-col justify-start pt-20 pb-0 sm:justify-center sm:pt-20">
-          <Container>
-            {/* SEO: Primary H1 - visually hidden but accessible */}
+        {/* SECTION A: HERO — Doctrine left, Terminal right */}
+        <Section className="min-h-screen flex flex-col justify-start pt-24 pb-0 sm:justify-center">
+          <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
             <h1 className="sr-only">
               Menezis - Autonomous Infrastructure Platform with MCP Integration and Post-Quantum Security
             </h1>
 
-            <Terminal />
+            <div className="grid xl:grid-cols-[1fr_auto] gap-12 xl:gap-16 items-center">
+              {/* Left: Doctrine */}
+              <div className="space-y-8">
+                <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">
+                  We are not <br/>
+                  <span className="text-neutral-600 line-through decoration-terminal-green/50 decoration-2">Cloud Architects.</span>
+                </h2>
+                <div className="space-y-6 text-lg text-neutral-400 font-mono leading-relaxed">
+                  <p>
+                    The old world believes complexity is job security. They spend weeks writing Terraform. They worship uptime but sacrifice velocity.
+                  </p>
+                  <p>
+                    <strong className="text-white">We believe infrastructure should be invisible.</strong>
+                  </p>
+                  <p>
+                    Menezis is for the builders who want to ship code, not configure YAML. It is for the maximalists who demand power without the bureaucracy.
+                  </p>
+                </div>
 
-            {/* Hero CTA */}
-            <div className="flex flex-col sm:flex-row gap-3 justify-center mt-6 md:mt-8 px-4 md:px-0">
-              <a
-                href="/docs/quickstart"
-                className="px-5 py-2.5 md:px-8 md:py-4 bg-terminal-green text-black text-sm md:text-base font-bold rounded-lg hover:bg-terminal-green/90 transition-all shadow-[0_0_30px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] text-center"
-              >
-                Deploy Now — Free Tier
-              </a>
-              <a
-                href="/docs"
-                className="px-5 py-2.5 md:px-8 md:py-4 border border-white/20 text-white text-sm md:text-base font-medium rounded-lg hover:bg-white/5 transition-all text-center"
-              >
-                View Documentation
-              </a>
+                <div className="grid gap-3">
+                  <div className="flex items-center gap-4 px-4 py-3 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm hover:border-terminal-green/30 transition-colors group">
+                    <div className="p-2 rounded bg-terminal-green/10 text-terminal-green group-hover:text-terminal-green/80 shrink-0">
+                      <Zap size={16} />
+                    </div>
+                    <span className="text-sm text-neutral-300 font-mono">Deployment should take seconds, not sprints.</span>
+                  </div>
+
+                  <div className="flex items-center gap-4 px-4 py-3 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm hover:border-terminal-green/30 transition-colors group">
+                    <div className="p-2 rounded bg-terminal-green/10 text-terminal-green group-hover:text-terminal-green/80 shrink-0">
+                      <Lock size={16} />
+                    </div>
+                    <span className="text-sm text-neutral-300 font-mono">The network is hostile. Post-quantum encryption is the new black.</span>
+                  </div>
+
+                  <div className="flex items-center gap-4 px-4 py-3 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm hover:border-terminal-green/30 transition-colors group">
+                    <div className="p-2 rounded bg-terminal-green/10 text-terminal-green group-hover:text-terminal-green/80 shrink-0">
+                      <Cpu size={16} />
+                    </div>
+                    <span className="text-sm text-neutral-300 font-mono">Infrastructure built for the age of silicon intelligence.</span>
+                  </div>
+                </div>
+
+                <InstallCommand />
+
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <a
+                    href="/docs/quickstart"
+                    className="text-neutral-400 hover:text-white text-sm font-mono border-b border-transparent hover:border-white transition-all pb-0.5"
+                  >
+                    Read the manual
+                  </a>
+                  <span className="text-neutral-700 hidden sm:inline">|</span>
+                  <a
+                    href="/docs/security"
+                    className="text-neutral-400 hover:text-white text-sm font-mono border-b border-transparent hover:border-white transition-all pb-0.5"
+                  >
+                    View security proofs
+                  </a>
+                </div>
+              </div>
+
+              {/* Right: Terminal (fixed dimensions) */}
+              <Terminal />
             </div>
 
-            <a href="#architecture" aria-label="Scroll to next section" className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-50 hover:opacity-100 focus:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-terminal-green rounded-full transition-opacity animate-bounce">
-              <ChevronDown className="text-white w-6 h-6" />
+            <a href="#architecture" aria-label="Scroll to next section" className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-30 hover:opacity-100 focus:opacity-100 transition-opacity">
+              <ChevronDown className="text-white w-6 h-6 animate-bounce" />
             </a>
-          </Container>
+          </div>
         </Section>
 
-        {/* SECTION B: VALUE PROPOSITION + SOCIAL PROOF */}
-        <Section className="border-t border-white/5 pt-16 pb-8">
+        {/* SOCIAL PROOF */}
+        <Section className="border-t border-white/5 py-12 bg-black/40">
           <Container>
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Built different. <span className="text-terminal-green">To let you build faster.</span>
-              </h2>
-              <p className="font-mono text-neutral-400 text-lg">
-                The first autonomous infrastructure platform designed for the AI era.<br />
-                <span className="text-neutral-500">16 MCP tools. ML-KEM-768 post-quantum security. Self-healing monitoring.</span>
-              </p>
-            </div>
             <SocialProof />
           </Container>
         </Section>
 
         {/* SECTION C: CORE ARCHITECTURE */}
-        <Section id="architecture" className="pt-8 pb-16">
+        <Section id="architecture" className="pt-16 pb-16">
           <Container>
             <div className="mb-12">
               <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2">
-                <Network className="text-terminal-green" /> CORE ARCHITECTURE
+                <Network className="text-terminal-green" /> SYSTEM ARCHITECTURE
               </h2>
-              <p className="font-mono text-sm text-neutral-500">Military-grade defaults. Zero configuration.</p>
+              <p className="font-mono text-sm text-neutral-500">Designed for autonomy. Built for survival.</p>
             </div>
 
-            {/* Row 1: Security, Economics, Reliability */}
             <BentoGrid>
               <TechCard
                 title="POST-QUANTUM SANCTUARY"
@@ -106,7 +162,7 @@ export default function Home() {
               />
               <TechCard
                 title="SOVEREIGN ECONOMICS"
-                description={<>Zero hidden fees. Pro-rata daily billing.<br />Free Nano tier forever. Small at 12.99€/mo. Predictable costs, no surprise bills.</>}
+                description={<>Zero hidden fees. Pro-rata daily billing.<br />Free Nano tier forever. Small at 12.99&euro;/mo. Predictable costs, no surprise bills.</>}
                 icon={Coins}
                 variant="alert"
                 className="md:col-span-1"
@@ -120,11 +176,10 @@ export default function Home() {
               />
             </BentoGrid>
 
-            {/* Row 2: AI, Flexibility, Monitoring */}
             <BentoGrid className="mt-4">
               <TechCard
                 title="AI-NATIVE DEPLOYMENT"
-                description={<>16 MCP tools for AI code assistants.<br />describe → validate (7 layers) → judge (5 analyzers) → deploy.<br />Natural language to running infrastructure.</>}
+                description={<>16 MCP tools for AI code assistants.<br />describe &rarr; validate (7 layers) &rarr; judge (5 analyzers) &rarr; deploy.<br />Natural language to running infrastructure.</>}
                 icon={Sparkles}
                 variant="default"
                 className="md:col-span-1"
@@ -155,10 +210,7 @@ export default function Home() {
                 <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2">
                   <GitCommit className="text-electric-blue" /> THE ARSENAL
                 </h2>
-                <p className="font-mono text-sm text-neutral-500">16 MCP Tools. Native integration with Claude Code, Cursor, Windsurf, and more.</p>
-              </div>
-              <div className="font-mono text-xs text-neutral-600 bg-white/5 px-3 py-1 rounded border border-white/5">
-                npm install @menezis/sdk
+                <p className="font-mono text-sm text-neutral-500">16 Tools. One Protocol. Infinite Power.</p>
               </div>
             </div>
 
@@ -170,8 +222,8 @@ export default function Home() {
         <Section id="pricing" className="border-t border-white/5">
           <Container>
             <div className="mb-12 text-center">
-              <h2 className="text-2xl font-bold text-white mb-2">PREDICTABLE PRICING</h2>
-              <p className="font-mono text-sm text-neutral-500">No calculators. No surprises. Sleep at night.</p>
+              <h2 className="text-2xl font-bold text-white mb-2">ACCESS LEVELS</h2>
+              <p className="font-mono text-sm text-neutral-500">Pay for power, not promises.</p>
             </div>
 
             <PricingTable />
@@ -183,11 +235,8 @@ export default function Home() {
           <Container>
             <div className="mb-12 text-center">
               <h2 className="text-2xl font-bold text-white mb-2 flex items-center justify-center gap-2">
-                <HelpCircle className="text-terminal-green" /> FREQUENTLY ASKED QUESTIONS
+                <HelpCircle className="text-terminal-green" /> KNOWLEDGE BASE
               </h2>
-              <p className="font-mono text-sm text-neutral-500">
-                Everything you need to know about Menezis
-              </p>
             </div>
             <FAQ />
           </Container>
@@ -200,15 +249,14 @@ export default function Home() {
               <div className="space-y-2">
                 <div className="flex items-center gap-1 text-terminal-green">
                   <Shield size={12} />
-                  GDPR Compliant · EU / US / SG Regions
+                  GDPR Compliant &middot; EU / US / SG Regions
                 </div>
               </div>
 
               <div className="flex gap-8">
                 <a href="/docs" className="hover:text-white transition-colors">Documentation</a>
-                <a href="https://status.menezis.ai" className="hover:text-white transition-colors">Status</a>
-                <a href="/legal" className="hover:text-white transition-colors">Legal</a>
-                <a href="/investors" className="hover:text-white transition-colors">Investors</a>
+                <a href="https://status.menezis.ai" className="hover:text-white transition-colors">System Status</a>
+                <a href="/legal" className="hover:text-white transition-colors">Protocol</a>
               </div>
             </div>
 

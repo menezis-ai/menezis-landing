@@ -169,7 +169,7 @@ export function Terminal() {
             </div>
 
             {/* DESKTOP VERSION */}
-            <div className="hidden md:block mx-auto select-none w-[750px] max-w-full h-[850px]">
+            <div className="hidden md:block mx-auto select-none w-[580px] max-w-full h-[650px]">
                 <div
                     className="relative w-full h-full font-terminal-custom text-sm leading-relaxed overflow-hidden rounded-lg border border-white/10 bg-black/90 shadow-[0_0_40px_-10px_rgba(0,255,65,0.05)] backdrop-blur-sm flex flex-col"
                 >
